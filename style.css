@@ -16,14 +16,14 @@
 
 .yodaBox {
     height: auto;
-    width: 340px;
+    /* width: 340px; */
     background: #F0F0F2;
     border: 3px solid #4CB7EB;
     padding: 20px;
     display: grid;
     grid-template-columns: auto;
     justify-items: center;
-    align-content: center;
+    align-items: center;
 
 }
 

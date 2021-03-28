@@ -1,30 +1,35 @@
-import {yodaSaid} from './node_modules/yoda-said/index.js';
-
-
+const form = document.querySelector('form.search');
 const result = document.querySelector('.result')
 const yodaButton = document.querySelector('.getYoda')
+const proxy = `https://cors-anywhere.herokuapp.com/`
+const baseEndpoint = `http://yoda-api.appspot.com/api/v1/yodish`
+
+result.innerHTML = 'Yoda translate to Yoda I am. Yes, hrrrm.'
 
 
 
-const text = yodaSaid();
+
+async function handleSubmit(e) {
+e.preventDefault()
+console.log(e.currentTarget)
+const el = e.currentTarget;
+console.log(el.phrase.value);
+let text = el.phrase.value
+text = encodeURIComponent(text)
 console.log(text)
-
-
-result.innerHTML = yodaSaid()
-
-function handleClick(e) {
-    e.preventDefault()
-    console.log(e.target)
-    result.innerHTML = yodaSaid()
+const response = await fetch(`${proxy}${baseEndpoint}?text=${text}`)
+const data = await response.json();
+console.log(data)
+  result.innerHTML = data.yodish
 }
 
-function translateToYoda() {
-    result.innerHTML = `Hey I'm Yoda!`
-}
+
+
+
 
 
 
 
 // Event listeners
-yodaButton.addEventListener('click', handleClick)
 
+form.addEventListener('submit', handleSubmit);
